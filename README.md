@@ -14,5 +14,15 @@ git clone https://github.com/foxlet/macOS-Simple-KVM
 cd macOS-Simple-KVM
 ./jumpstart.sh --mojave
 
+qemu-img create -f qcow2 MyDisk.qcow2 64G
+
+and add it to the end of basic.sh:
+    -drive id=SystemDisk,if=none,file=MyDisk.qcow2 \
+    -device ide-hd,bus=sata.4,drive=SystemDisk \
+
+./make.sh --add
+virt-manager
+
+
 
 ```
